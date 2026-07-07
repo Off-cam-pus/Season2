@@ -1,12 +1,12 @@
-const telegramUsername = "caymancadif";
+const whatsappUsername = "Belmont Cameli";
 
 const messageOptions = [
-    { emoji: "🎵", title: "Music Feedback", message: "Hi Cayman, I just listened to your latest song and..." },
-    { emoji: "🤝", title: "Collaboration", message: "Hey Cayman, I’d love to collaborate with you on a project..." },
-    { emoji: "💡", title: "Ask for Advice", message: "Hi Cayman, I need some advice about..." },
-    { emoji: "👋", title: "Just Saying Hi", message: "Hey Cayman! Just wanted to say I love your work ❤️" },
-    { emoji: "🎤", title: "Fan Story", message: "Cayman, your music helped me through a tough time because..." },
-    { emoji: "🚀", title: "Business / Booking", message: "Hi Cayman, I have a business/booking opportunity for you..." }
+    { emoji: "🎵", title: "Music Feedback", message: "Hi Belmont, I just watched one of your latest movies and..." },
+    { emoji: "🤝", title: "Collaboration", message: "Hey Belmont, I’d love to collaborate with you on a project..." },
+    { emoji: "💡", title: "Ask for Advice", message: "Hi Belmont, I need some advice about..." },
+    { emoji: "👋", title: "Just Saying Hi", message: "Hey Belmont! Just wanted to say I love your work ❤️" },
+    { emoji: "🎤", title: "Fan Story", message: "Belmont, your movies helped me through a tough time because..." },
+    { emoji: "🚀", title: "Business / Booking", message: "Hi Belmont, I have a business/booking opportunity for you..." }
 ];
 
 /**
@@ -26,14 +26,14 @@ function showCelebrityPopup(callback) {
 }
 
 /**
- * Forms the absolute Deep Link URL and updates window state to point to Telegram.
+ * Forms the absolute Deep Link URL and updates window state to point to Whatsapp.
  * @param {string} messageText - Optional string content intended as pre-filled chat parameters.
  */
-function openTelegram(messageText) {
+function openWhatsapp(messageText) {
     const encodedText = encodeURIComponent(messageText || "");
     const finalUrl = messageText 
-        ? `https://t.me/${telegramUsername}?text=${encodedText}`
-        : `https://t.me/${telegramUsername}`;
+        ? `https://t.me/${whatsappUsername}?text=${encodedText}`
+        : `https://wa.me/${whatsappNumber}`;
         
     window.open(finalUrl, '_blank');
 }
@@ -56,7 +56,7 @@ function createMessageCards() {
             <p class="text-zinc-400 line-clamp-3">${option.message}</p>
         `;
         card.onclick = () => {
-            showCelebrityPopup(() => openTelegram(option.message));
+            showCelebrityPopup(() => openWhatsapp(option.message));
         };
         container.appendChild(card);
     });
@@ -68,7 +68,7 @@ function createMessageCards() {
  */
 function handleCustomTextareaSubmit(structuralText = null) {
     if (structuralText) {
-        showCelebrityPopup(() => openTelegram(structuralText));
+        showCelebrityPopup(() => openWhatsapp(structuralText));
         return;
     }
 
@@ -80,7 +80,7 @@ function handleCustomTextareaSubmit(structuralText = null) {
         return;
     }
     
-    showCelebrityPopup(() => openTelegram(message));
+    showCelebrityPopup(() => openWhatsapp(message));
 }
 
 // Global runtime execution handles context mappings cleanly
