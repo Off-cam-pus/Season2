@@ -24,33 +24,95 @@
                         url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
             position: relative;
         }
+
+        /* --- Liquid Glass Base Definition --- */
+        .liquid-glass {
+            /* Fluid, shifting iridescent color palette */
+            background: linear-gradient(135deg, 
+                        rgba(42, 233, 254, 0.15) 0%, 
+                        rgba(0, 122, 255, 0.1) 40%, 
+                        rgba(157, 78, 221, 0.15) 100%) !important;
+            
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            
+            /* Stronger inner glow to simulate liquid surface tension */
+            border: 1px solid rgba(255, 255, 255, 0.25) !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.45) !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.35) !important;
+            
+            /* Double-layered specular highlight shadow */
+            box-shadow: 0 8px 32px 0 rgba(0, 122, 255, 0.15),
+                        inset 0 4px 12px rgba(255, 255, 255, 0.2),
+                        inset 0 -2px 6px rgba(0, 0, 0, 0.2) !important;
+
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
         
-        /* --- The Crystal Glass Card (iPhone 14 Style) --- */
+        /* --- The Crystal Glass Card (With Hover Effects) --- */
         .message-card {
-            /* The core glassmorphism recipe */
-            background: rgba(255, 255, 255, 0.06) !important; 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            
-            /* Crystal-thin crisp borders */
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-top: 1px solid rgba(255, 255, 255, 0.3); /* Simulates top light reflection */
-            border-radius: 24px; /* Premium curved iOS corners */
-            
-            /* Elegant, soft depth shadow */
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-                        
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important; /* Ultra-smooth Apple easing */
+            cursor: pointer;
         }
         
         /* --- Pro Max Interactive Hover --- */
         .message-card:hover {
-            transform: translateY(-6px) scale(1.01) !important;
-            background: rgba(255, 255, 255, 0.1) !important; 
-            border-color: rgba(255, 255, 255, 0.25) !important;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+            transform: translateY(-6px) scale(1.02) !important;
+            background: linear-gradient(135deg, 
+                        rgba(42, 233, 254, 0.25) 0%, 
+                        rgba(0, 122, 255, 0.15) 40%, 
+                        rgba(157, 78, 221, 0.25) 100%) !important;
+            border-color: rgba(255, 255, 255, 0.4) !important;
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.25),
+                        inset 0 4px 12px rgba(255, 255, 255, 0.3) !important;
+        }
+
+        /* --- Animated Liquid Gradient Background --- */
+        .liquid-glass-animate {
+            background: linear-gradient(-45deg, 
+                        rgba(42, 233, 254, 0.2), 
+                        rgba(0, 122, 255, 0.15), 
+                        rgba(157, 78, 221, 0.25), 
+                        rgba(255, 0, 122, 0.15)) !important;
+            background-size: 400% 400% !important;
+            animation: liquidFlow 12s ease infinite !important;
+        }
+
+        @keyframes liquidFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- Liquid Glass Message Input & Placeholders --- */
+        .message-input-field {
+            background: rgba(255, 255, 255, 0.04) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 16px !important;
+            padding: 14px 20px !important;
+            color: #ffffff !important;
+            outline: none !important;
+            transition: all 0.3s ease !important;
+        }
+
+        /* Styling the actual placeholder text with a glossy, semi-translucent color */
+        .message-input-field::placeholder {
+            color: rgba(42, 233, 254, 0.6) !important; /* Cyan liquid vibe */
+            text-shadow: 0 0 8px rgba(42, 233, 254, 0.3);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        /* High-gloss active focus state */
+        .message-input-field:focus {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(42, 233, 254, 0.5) !important;
+            box-shadow: 0 0 20px rgba(42, 233, 254, 0.25),
+                        inset 0 1px 4px rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .message-input-field:focus::placeholder {
+            color: rgba(255, 255, 255, 0.4) !important;
         }
         
         /* --- Premium Action Button --- */
@@ -80,15 +142,9 @@
         }
         
         /* --- Dynamic Dynamic Island / Popup Entry --- */
-        #celebrity-popup {
-            /* Slightly glossier glass for popups */
-            background: rgba(15, 15, 20, 0.7) !important; 
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        #celebrity-popup .popup-content {
             border-radius: 28px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            
             animation: popupSpring 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
         }
         
@@ -162,9 +218,9 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto" id="message-options"></div>
 
-            <div class="max-w-xl mx-auto mt-12 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 shadow-xl">
+            <div class="max-w-xl mx-auto mt-12 liquid-glass p-8 shadow-xl">
                 <h3 class="text-2xl font-semibold mb-6 text-center">Or write your own message</h3>
-                <textarea id="custom-message" rows="4" class="w-full bg-black/40 border border-white/10 rounded-2xl p-6 text-lg text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500 resize-none" placeholder="Hi Belmont, I really loved your last movie…"></textarea>
+                <textarea id="custom-message" rows="4" class="w-full message-input-field text-lg resize-none" placeholder="Hi Belmont, I really loved your last movie…"></textarea>
                 <button onclick="handleCustomTextareaSubmit()" class="telegram-btn mt-6 w-full text-white font-bold py-5 rounded-2xl text-xl flex items-center justify-center gap-3">
                     <i class="fa-brands fa-whatsapp text-2xl"></i>
                     Send on Whatsapp
@@ -182,7 +238,7 @@
                     <p>I read almost every message and try my best to reply within 48 hours.</p>
                 </div>
             </div>
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8">
+            <div class="liquid-glass p-8">
                 <div class="flex items-center gap-4 mb-8">
                     <div class="w-12 h-12 bg-cyan-500/10 rounded-2xl flex items-center justify-center text-2xl border border-cyan-500/20">📍</div>
                     <div>
@@ -205,7 +261,7 @@
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-5xl font-bold text-center mb-16">What fans are saying</h2>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8">
+                <div class="liquid-glass p-8">
                     <p class="italic text-zinc-300 mb-6">”Belmont actually replied to me! We talked about songwriting for 20 minutes. Life changing.”</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-white/10 rounded-full border border-white/10"></div>
@@ -215,7 +271,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8">
+                <div class="liquid-glass p-8">
                     <p class="italic text-zinc-300 mb-6">”Sent him my demo and got real feedback. This man is the real deal.”</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-white/10 rounded-full border border-white/10"></div>
@@ -225,7 +281,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8">
+                <div class="liquid-glass p-8">
                     <p class="italic text-zinc-300 mb-6">”Just a simple thank you message and he hearted it. Small things matter.”</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-white/10 rounded-full border border-white/10"></div>
@@ -251,8 +307,8 @@
         </div>
     </footer>
 
-    <div id="celebrity-popup" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100]">
-        <div class="p-10 max-w-sm mx-4 text-center">
+    <div id="celebrity-popup" class="hidden fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-[100]">
+        <div class="popup-content liquid-glass liquid-glass-animate p-10 max-w-sm mx-4 text-center">
             <div class="text-6xl mb-6 animate-bounce">🎉</div>
             <h3 class="text-3xl font-bold mb-3 text-white">Congratulations!</h3>
             <p class="text-xl bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent font-semibold">You are about to contact Belmont Cameli Directly.</p>
@@ -296,8 +352,8 @@
             
             messageOptions.forEach(option => {
                 const card = document.createElement('div');
-                // Added message-card targeting class directly
-                card.className = `message-card p-8 cursor-pointer`;
+                // Merged the base dynamic styling variables with your glass asset specs
+                card.className = `liquid-glass message-card p-8`;
                 card.innerHTML = `
                     <div class="text-5xl mb-6">${option.emoji}</div>
                     <h3 class="text-2xl font-semibold mb-3">${option.title}</h3>
