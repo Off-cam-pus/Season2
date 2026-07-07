@@ -1,127 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap');
 
+/* --- Global Modern Resets --- */
 body {
-    font-family: 'Inter', system-ui, sans-serif;
-    background: #0a0a0a;
-    color: #f1f5f9;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #0b0f19; /* Deep iOS-like dark background to make glass pop */
+    color: #f3f4f6;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Enhanced Hero Background */
+/* --- Hero Background Panel --- */
 .hero-bg {
-    background: linear-gradient(
-        rgba(15, 23, 42, 0.82),
-        rgba(15, 23, 42, 0.94)
-    ), 
-    url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+    background: linear-gradient(rgba(11, 15, 25, 0.65), rgba(11, 15, 25, 0.85)), 
+                url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
     position: relative;
 }
 
-.hero-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(165, 180, 252, 0.18), transparent 60%);
-    pointer-events: none;
-}
-
-/* Premium Glass Navigation (iPhone 14 Pro style) */
-.glass-nav {
-    background: rgba(255, 255, 255, 0.07);
-    backdrop-filter: blur(32px);
-    -webkit-backdrop-filter: blur(32px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* Crystal Glass Message Cards */
+/* --- The Crystal Glass Card (iPhone 14 Style) --- */
 .message-card {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    /* The core glassmorphism recipe */
+    background: rgba(255, 255, 255, 0.06); 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    /* Crystal-thin crisp borders */
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 24px;
-    box-shadow: 
-        0 8px 32px -6px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.18);
-    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.3); /* Simulates top light reflection */
+    border-radius: 24px; /* Premium curved iOS corners */
+    
+    /* Elegant, soft depth shadow */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Ultra-smooth Apple easing */
 }
 
+/* --- Pro Max Interactive Hover --- */
 .message-card:hover {
-    transform: translateY(-12px) scale(1.015);
-    box-shadow: 
-        0 25px 50px -12px rgba(165, 180, 252, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    border-color: rgba(165, 180, 252, 0.35);
+    transform: translateY(-6px) scale(1.01);
+    background: rgba(255, 255, 255, 0.1); 
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Premium Crystal Button */
+/* --- Premium Action Button --- */
 .telegram-btn {
-    background: linear-gradient(145deg, #6366f1, #a5b4fc);
-    color: white;
+    background: linear-gradient(135deg, #2ae9fe, #007aff); /* Vibrant iOS Blue */
+    color: #ffffff;
     font-weight: 600;
-    letter-spacing: -0.02em;
-    padding: 16px 42px;
-    border-radius: 9999px;
-    box-shadow: 
-        0 10px 15px -3px rgba(99, 102, 241, 0.45),
-        inset 0 2px 4px rgba(255,255,255,0.35);
-    border: 1px solid rgba(255,255,255,0.3);
-    animation: pulse 2.2s infinite ease-in-out;
+    border-radius: 9999px; /* Pill shape */
+    box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
+    animation: pulsePro 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    transition: transform 0.2s ease;
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.06); }
+.telegram-btn:active {
+    transform: scale(0.96); /* Instant tactile press feedback */
 }
 
-/* Crystal Popup */
+@keyframes pulsePro {
+    0%, 100% { 
+        transform: scale(1); 
+        box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
+    }
+    50% { 
+        transform: scale(1.03); 
+        box-shadow: 0 12px 28px rgba(0, 122, 255, 0.5);
+    }
+}
+
+/* --- Dynamic Dynamic Island / Popup Entry --- */
 #celebrity-popup {
-    background: rgba(15, 23, 42, 0.88);
-    backdrop-filter: blur(32px);
-    -webkit-backdrop-filter: blur(32px);
-    border: 1px solid rgba(165, 180, 252, 0.3);
+    /* Slightly glossier glass for popups */
+    background: rgba(15, 15, 20, 0.7); 
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 28px;
-    box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.7);
-    animation: popupFade 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    
+    animation: popupSpring 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
 }
 
-@keyframes popupFade {
-    from {
-        opacity: 0;
-        transform: scale(0.75) translateY(40px);
+@keyframes popupSpring {
+    from { 
+        opacity: 0; 
+        transform: scale(0.85) translateY(10px); 
     }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
+    to { 
+        opacity: 1; 
+        transform: scale(1) translateY(0); 
     }
-}
-
-/* Typography & Extras */
-.display-font {
-    font-family: 'Playfair Display', sans-serif;
-}
-
-.glass-text {
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
-}
-
-/* Subtle noise overlay for premium texture */
-.noise::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('https://picsum.photos/id/1015/400/400') repeat;
-    opacity: 0.025;
-    mix-blend-mode: overlay;
-    pointer-events: none;
-    border-radius: inherit;
-}
-
-/* Additional polish */
-button, .btn {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-button:hover {
-    transform: translateY(-1px);
 }
