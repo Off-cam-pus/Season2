@@ -6,7 +6,7 @@
         { emoji: "🤝", title: "Collaboration", message: "Hey Belmont, I’d love to collaborate with you on a project..." },
         { emoji: "💡", title: "Ask for Advice", message: "Hi Belmont, I need some advice about..." },
         { emoji: "👋", title: "Just Saying Hi", message: "Hey Belmont! Just wanted to say I love your work ❤️" },
-        { emoji: "🎤", title: "Fan Story", message: "Belmont, your movies helped me through a tough time because ..." },
+        { emoji: "🎤", title: "Fan Story", message: "Belmont, your movies helped me through a tough time because..." },
         { emoji: "🚀", title: "Business / Booking", message: "Hi Belmont, I have a business/booking opportunity for you..." }
     ];
 
@@ -27,12 +27,13 @@
     }
 
     /**
-     * Opens WhatsApp with optional pre-filled message
-     * @param {string} messageText - Optional string content intended as pre-filled chat parameters.
+     * Opens WhatsApp directly with pre-filled message
+     * @param {string} messageText - The message to pre-fill
      */
     function openWhatsapp(messageText) {
-        const encodedText = encodeURIComponent(messageText || "Hi Belmont!");
-        const finalUrl = `https://wa.me/\( {whatsappNumber}?text= \){encodedText}`;
+        const phone = whatsappNumber.replace(/\D/g, ''); // Clean phone number
+        const text = messageText ? encodeURIComponent(messageText.trim()) : encodeURIComponent("Hi Belmont!");
+        const finalUrl = `https://wa.me/\( {phone}?text= \){text}`;
         window.open(finalUrl, '_blank');
     }
 
