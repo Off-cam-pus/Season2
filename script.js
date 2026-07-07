@@ -16,6 +16,12 @@
      */
     function showCelebrityPopup(callback) {
         const popup = document.getElementById('celebrity-popup');
+        if (!popup) {
+            // Fallback if the DOM element doesn't exist yet
+            if (callback) callback();
+            return;
+        }
+        
         popup.classList.remove('hidden');
         popup.classList.add('flex');
         
@@ -31,9 +37,11 @@
      * @param {string} messageText - The message to pre-fill
      */
     function openWhatsapp(messageText) {
-        const phone = whatsappNumber.replace(/\D/g, ''); // Clean phone number
+        const phone = whatsappNumber.replace(/\D/g, ''); // Clean phone number -> "18046504500"
         const text = messageText ? encodeURIComponent(messageText.trim()) : encodeURIComponent("Hi Belmont!");
-        const finalUrl = `https://wa.me/\( {phone}?text= \){text}`;
+        
+        // FIXED: Using correct JavaScript template literal syntax syntax `${}`
+        const finalUrl = `https://wa.me/${phone}?text=${text}`;
         window.open(finalUrl, '_blank');
     }
 
