@@ -1,94 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap');
-
-/* --- Global Modern Resets --- */
-body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #0b0f19; /* Deep iOS-like dark background to make glass pop */
-    color: #f3f4f6;
-    -webkit-font-smoothing: antialiased;
-}
-
-/* --- Hero Background Panel --- */
-.hero-bg {
-    background: linear-gradient(rgba(11, 15, 25, 0.65), rgba(11, 15, 25, 0.85)), 
-                url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
-    position: relative;
-}
-
-/* --- The Crystal Glass Card (iPhone 14 Style) --- */
-.message-card {
-    /* The core glassmorphism recipe */
-    background: rgba(255, 255, 255, 0.06); 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+/* --- Liquid Glass Base Definition --- */
+.liquid-glass {
+    /* Fluid, shifting iridescent color palette */
+    background: linear-gradient(135deg, 
+                rgba(42, 233, 254, 0.15) 0%, 
+                rgba(0, 122, 255, 0.1) 40%, 
+                rgba(157, 78, 221, 0.15) 100%);
     
-    /* Crystal-thin crisp borders */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    
+    /* Stronger inner glow to simulate liquid surface tension */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-top: 1px solid rgba(255, 255, 255, 0.45);
+    border-left: 1px solid rgba(255, 255, 255, 0.35);
+    
+    /* Double-layered specular highlight shadow */
+    box-shadow: 0 8px 32px 0 rgba(0, 122, 255, 0.15),
+                inset 0 4px 12px rgba(255, 255, 255, 0.2),
+                inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Animated Liquid Gradient Background (Optional Enhancement) --- */
+.liquid-glass-animate {
+    background: linear-gradient(-45deg, 
+                rgba(42, 233, 254, 0.15), 
+                rgba(0, 122, 255, 0.1), 
+                rgba(157, 78, 221, 0.2), 
+                rgba(255, 0, 122, 0.1));
+    background-size: 400% 400%;
+    animation: liquidFlow 12s ease infinite;
+}
+
+@keyframes liquidFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Liquid Glass Message Input & Placeholders --- */
+.message-input-field {
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-top: 1px solid rgba(255, 255, 255, 0.3); /* Simulates top light reflection */
-    border-radius: 24px; /* Premium curved iOS corners */
-    
-    /* Elegant, soft depth shadow */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-                
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Ultra-smooth Apple easing */
-}
-
-/* --- Pro Max Interactive Hover --- */
-.message-card:hover {
-    transform: translateY(-6px) scale(1.01);
-    background: rgba(255, 255, 255, 0.1); 
-    border-color: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-/* --- Premium Action Button --- */
-.telegram-btn {
-    background: linear-gradient(135deg, #2ae9fe, #007aff); /* Vibrant iOS Blue */
+    border-radius: 16px;
+    padding: 14px 20px;
     color: #ffffff;
-    font-weight: 600;
-    border-radius: 9999px; /* Pill shape */
-    box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
-    animation: pulsePro 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    transition: transform 0.2s ease;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
-.telegram-btn:active {
-    transform: scale(0.96); /* Instant tactile press feedback */
+/* Styling the actual placeholder text with a glossy, semi-translucent color */
+.message-input-field::placeholder {
+    color: rgba(42, 233, 254, 0.6); /* Cyan liquid vibe */
+    text-shadow: 0 0 8px rgba(42, 233, 254, 0.3);
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
-@keyframes pulsePro {
-    0%, 100% { 
-        transform: scale(1); 
-        box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
-    }
-    50% { 
-        transform: scale(1.03); 
-        box-shadow: 0 12px 28px rgba(0, 122, 255, 0.5);
-    }
+/* High-gloss active focus state */
+.message-input-field:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(42, 233, 254, 0.5);
+    box-shadow: 0 0 20px rgba(42, 233, 254, 0.25),
+                inset 0 1px 4px rgba(255, 255, 255, 0.2);
 }
 
-/* --- Dynamic Dynamic Island / Popup Entry --- */
-#celebrity-popup {
-    /* Slightly glossier glass for popups */
-    background: rgba(15, 15, 20, 0.7); 
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 28px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-    
-    animation: popupSpring 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
-}
-
-@keyframes popupSpring {
-    from { 
-        opacity: 0; 
-        transform: scale(0.85) translateY(10px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: scale(1) translateY(0); 
-    }
+.message-input-field:focus::placeholder {
+    color: rgba(255, 255, 255, 0.4);
 }
