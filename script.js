@@ -17,7 +17,6 @@
     function showCelebrityPopup(callback) {
         const popup = document.getElementById('celebrity-popup');
         if (!popup) {
-            // Fallback if the DOM element doesn't exist yet
             if (callback) callback();
             return;
         }
@@ -33,15 +32,15 @@
     }
 
     /**
-     * Opens WhatsApp directly with pre-filled message
+     * Opens WhatsApp directly with pre-filled message using the native app protocol
      * @param {string} messageText - The message to pre-fill
      */
     function openWhatsapp(messageText) {
         const phone = whatsappNumber.replace(/\D/g, ''); // Clean phone number -> "18046504500"
         const text = messageText ? encodeURIComponent(messageText.trim()) : encodeURIComponent("Hi Belmont!");
         
-        // FIXED: Using correct JavaScript template literal syntax syntax `${}`
-        const finalUrl = `https://wa.me/${phone}?text=${text}`;
+        // FIXED: Changed from https://wa.me/ to whatsapp://send to open the app directly
+        const finalUrl = `whatsapp://send?phone=${phone}&text=${text}`;
         window.open(finalUrl, '_blank');
     }
 
@@ -99,7 +98,6 @@
     window.onload = function() {
         createMessageCards();
         
-        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             if (!nav) return;
